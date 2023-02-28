@@ -1,0 +1,201 @@
+<!Doctype html>
+<html>
+    <head>
+        <title>hard copy</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <center>
+            <form>        
+                <table>
+                    <tr>
+                        <th colspan="2" id="heading">Supprt Engineer Registration</th>
+                    </tr>
+                    <tr>
+                        <td>First Name:</td>
+                        <td>
+                            <span id="S1"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Middle Name:</td>
+                        <td>
+                            <span id="S2"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Last Name:</td>
+                        <td>
+                            <span id="S3"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Gender:</td> 
+                         <td>   
+                            <span id="S4"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mobile Number:</td> 
+                         <td>   
+                            <span id="S5"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td> 
+                         <td>   
+                            <span id="S6"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Address:</td> 
+                         <td>   
+                            <span id="S7"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>State:</td> 
+                         <td>   
+                            <span id="S8"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>District:</td> 
+                         <td>   
+                            <span id="S9"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Taluka:</td> 
+                         <td>   
+                            <span id="S10"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Aadhar Number:</td> 
+                         <td>   
+                            <span id="S11"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Pancard Number:</td> 
+                         <td>   
+                            <span id="S12"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Bank Name:</td> 
+                         <td>   
+                            <span id="S13"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Bank Account Number:</td> 
+                         <td>   
+                            <span id="S14"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Bank IFS Code:</td> 
+                         <td>   
+                            <span id="S15"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Photo:</td> 
+                         <td>   
+                            <span id="S16"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Pancard:</td> 
+                         <td>   
+                            <span id="S17"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Aadhar Card:</td> 
+                         <td>   
+                            <span id="S18"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Bank Passbook:</td> 
+                         <td>   
+                            <span id="S19"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>User ID:</td> 
+                         <td>   
+                            <span id="S20"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Password:</td> 
+                         <td>   
+                            <span id="S21"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ReType Password:</td> 
+                         <td>   
+                            <span id="S22"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan="3">
+                            <input type="button" value="Print" id="printf" onclick="printdoc()">
+                            <input type="button" value="Edit" id="print" onclick="history.back()">
+                        </th>
+                    </tr>
+                </table>
+            </form>
+        </center>
+        <script>
+            document.getElementById("S1").innerHTML=localStorage.getItem("T1");
+            document.getElementById("S2").innerHTML=localStorage.getItem("T2");
+            document.getElementById("S3").innerHTML=localStorage.getItem("T3");
+            document.getElementById("S4").innerHTML=localStorage.getItem("T4");
+            document.getElementById("S5").innerHTML=localStorage.getItem("T5");
+            document.getElementById("S6").innerHTML=localStorage.getItem("T6");
+            document.getElementById("S7").innerHTML=localStorage.getItem("T7");
+            document.getElementById("S8").innerHTML=localStorage.getItem("T8");
+            document.getElementById("S9").innerHTML=localStorage.getItem("T9");
+            document.getElementById("S10").innerHTML=localStorage.getItem("T10");
+            document.getElementById("S11").innerHTML=localStorage.getItem("T11");
+            document.getElementById("S12").innerHTML=localStorage.getItem("T12");
+            document.getElementById("S13").innerHTML=localStorage.getItem("T13");
+            document.getElementById("S14").innerHTML=localStorage.getItem("T14");
+            document.getElementById("S15").innerHTML=localStorage.getItem("T15");
+            document.getElementById("S16").innerHTML=localStorage.getItem("T16");
+            document.getElementById("S17").innerHTML=localStorage.getItem("T17");
+            document.getElementById("S18").innerHTML=localStorage.getItem("T18");
+            document.getElementById("S19").innerHTML=localStorage.getItem("T19");
+            document.getElementById("S20").innerHTML=localStorage.getItem("T20");
+            document.getElementById("S21").innerHTML=localStorage.getItem("T21");
+            document.getElementById("S22").innerHTML=localStorage.getItem("T22");
+
+
+
+
+
+
+            function printdoc() {
+                var a = document.getElementById("printf");
+                var b = document.getElementById("print");
+
+                a.style.visibility = 'hidden';
+                b.style.visibility = 'hidden';
+
+                window.print()
+                a.style.visibility = 'visible';  
+                b.style.visibility = 'visible';
+            }
+
+
+
+
+
+        </script>
+    </body>

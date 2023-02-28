@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Call log page</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<center>
+		<form>
+			<table>
+				<tr>
+					<td>Call Booking</td>
+					<td>
+						<input type="date" id="DT1" onchange="selectDatevalidation()" required>
+                        
+					</td>
+				</tr>
+			</table>
+		</form>
+	</center>
+
+	<script>
+        function selectDatevalidation(){
+		var today = new Date();
+		var acceptableDate = new Date(today.setDate(today.getDate() + 2));
+
+		document.getElementById("DT1").addEventListener("change", function() {
+			var selectedDate = new Date(this.value);
+
+			if (selectedDate < acceptableDate) {
+				alert("Please select a date that is at least after two days.");
+				this.value = "";
+			}
+		});
+    }
+	</script>
+</body>
+</html>

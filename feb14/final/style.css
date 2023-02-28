@@ -1,0 +1,36 @@
+body{
+    font-family: sans-serif;
+  }
+  h2{
+  font-size: 25px;
+  text-decoration: underline;
+  text-shadow: 5px 5px 10px #a7e3e3;
+  }
+  
+  table{
+    width: 40%;
+    color: #fff;
+    background-image: linear-gradient(to right, #00b4db, #0083b0);  }
+  td {
+    padding: 5px;
+    font-weight: 700;
+  }
+  
+  select{
+    width: 13%;
+    height: 25px;
+    font-size: 15px;
+    background: linear-gradient(90deg, rgb(243, 246, 247) 0%, rgb(191, 231, 231) 35%, rgb(166, 234, 249) 100%);
+  }
+
+  @media (max-width: 600px){
+    table{
+      width: 100%;
+    }
+    select{
+      width: 20%;
+    }
+  }
+  
+
+ 

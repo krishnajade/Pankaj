@@ -1,0 +1,61 @@
+h2{
+    text-align: center;
+    border: 1px solid rgb(57, 243, 222);
+    border-radius: 20px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 30px;
+    background: #45bce8;
+    margin-bottom: 30px;
+    width: 50%;
+  }
+  #T1{
+    margin: auto;
+    height: 70vh;
+    width: 50%;
+    background: #c4ecfb;
+  }
+  #T2{
+    margin: auto;
+    height: 40vh;
+    width: 40%;
+    background: #c4ecfb;
+  }
+   td, th{
+    font-size: 20px;
+    padding-left: 30px;
+  }
+  select, input[type=text], input[type=email]{
+    height: 5vh;
+    width: 80%;
+    font-size: 17px;
+  }
+
+#btn {
+        background-color: rgb(11, 153, 149); 
+        border: none;
+        color: white;
+        padding: 10px 22px;
+        text-align: center;
+        border-radius: 30px;
+        font-size: 16px;
+        margin: 3px 30px;
+        cursor: pointer;
+        }
+        #btn:hover{
+          color:blaCK;
+          background-color: #fff;
+        }
+
+  @media (max-width: 858px){
+      /*icon + contact*/
+      #T1{
+        height: 90vh;
+        width: 100%;
+      }
+      #T2{
+        height: 50vh;
+        width: 100%;
+      }
+     
+  }

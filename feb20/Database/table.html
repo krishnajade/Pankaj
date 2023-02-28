@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API Data Table</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <table id="myTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Table rows will be dynamically populated with data from API -->
+    </tbody>
+  </table>
+
+  <script>
+    // Define the API URL
+    const apiUrl = 'https://cors-anywhere.herokuapp.com/https://trifrnd.in/array2.php';
+
+
+    // Fetch the data from the API and populate the table rows
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        const tableBody = document.querySelector('#myTable tbody');
+
+        data.forEach(user => {
+          const row = document.createElement('tr');
+          const nameCell = document.createElement('td');
+          const emailCell = document.createElement('td');
+          const phoneCell = document.createElement('td');
+
+          nameCell.textContent = user.name;
+          emailCell.textContent = user.email;
+          phoneCell.textContent = user.phone;
+
+          row.appendChild(nameCell);
+          row.appendChild(emailCell);
+          row.appendChild(phoneCell);
+
+          tableBody.appendChild(row);
+        });
+      });
+  </script>
+</body>
+</html>

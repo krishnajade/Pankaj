@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Charts</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="as/ven/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="as/ven/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="as/ven/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="as/ven/quill/quill.snow.css" rel="stylesheet">
+  <link href="as/ven/quill/quill.bubble.css" rel="stylesheet">
+  <link href="as/ven/remixicon/remixicon.css" rel="stylesheet">
+  <link href="as/ven/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="as/css/style.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+ 
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Chart.js</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Charts</li>
+          <li class="breadcrumb-item active">Chart.js</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+    <label for="machine">Select a machine:</label>
+  <select id="machine" onchange="clearYearAndMonth()">
+    <option value="">-- Select machine--</option>
+    <option value="machine1">Machine 1</option>
+    <option value="machine2">Machine 2</option>
+    <option value="machine3">Machine 3</option>
+    <option value="machine4">Machine 4</option>
+  </select>
+
+  <label for="year">Select a year:</label>
+  <select id="year" onchange="clearMonth()">
+    <option value="">--Select year--</option>
+    <option value="2021">2021</option>
+    <option value="2022">2022</option>
+    <option value="2023">2023</option>
+    <option value="2024">2024</option>
+    <option value="2025">2025</option>
+  </select>
+
+  <label for="month">Select a month:</label>
+  <select id="month">
+    <option value="">--Select month--</option>
+    <option value="january">January</option>
+    <option value="february">February</option>
+    <option value="march">March</option>
+    <option value="april">April</option>
+    <option value="may">May</option>
+    <option value="june">June</option>
+    <option value="july">July</option>
+    <option value="august">August</option>
+    <option value="september">September</option>
+    <option value="october">October</option>
+    <option value="november">November</option>
+    <option value="december">December</option>
+  </select><br><br>
+
+
+
+    <section class="section">
+      <div class="row">
+
+  
+
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Bar CHart</h5>
+
+              <!-- Bar Chart -->
+              <canvas id="barChart" style="max-height: 400px;"></canvas>
+              <script>
+              const machineSelect = document.getElementById('machine');
+const chartCanvas = document.getElementById('barChart');
+
+machineSelect.addEventListener('change', async () => {
+ if (machineSelect.value === 'machine1') {
+    chartCanvas.style.display = 'block';
+
+   const response = await fetch('https://trifrnd.in/Pankaj/Arraychart2.php');
+   const data = await response.json();
+
+   const labels = data.map(post => post.date);
+   const values = data.map(post => post.card_users);
+
+   new Chart(document.querySelector('#barChart'), {
+     type: 'bar',
+     data: {
+       labels: labels,
+       datasets: [{
+         label: 'Card Users',
+         data: values,
+         backgroundColor: [
+           'rgba(255, 99, 132, 0.2)',
+           'rgba(255, 159, 64, 0.2)',
+           'rgba(255, 205, 86, 0.2)',
+           'rgba(75, 192, 192, 0.2)',
+           'rgba(54, 162, 235, 0.2)',
+           'rgba(153, 102, 255, 0.2)',
+           'rgba(201, 203, 207, 0.2)'
+         ],
+         borderColor: [
+           'rgba(255, 99, 132, 1)',
+           'rgba(255, 159, 64, 1)',
+           'rgba(255, 205, 86, 1)',
+           'rgba(75, 192, 192, 1)',
+           'rgba(54, 162, 235, 1)',
+           'rgba(153, 102, 255, 1)',
+           'rgba(201, 203, 207, 1)'
+         ],
+         borderWidth: 1
+       }]
+     },
+     options: {
+       scales: {
+         y: {
+           beginAtZero: true
+         }
+       }
+     }
+   });
+ } else {
+   chartCanvas.style.display = 'none';
+ }
+});
+                function clearYearAndMonth() {
+                    // Clear the year dropdown
+                    document.getElementById("year").selectedIndex = 0;
+                    // Clear the month dropdown
+                    document.getElementById("month").selectedIndex = 0;
+                }
+
+                function clearMonth() {
+                    // Clear the month dropdown
+                    document.getElementById("month").selectedIndex = 0;
+                }
+              </script>
+              
+              
+              <!-- End Bar CHart -->
+
+            </div>
+          </div>
+        </div>
+
+  
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+    <div class="copyright">
+      &copy; Copyright <strong><span>TRIFRND</span></strong>. All Rights Reserved
+    </div>
+    <div class="credits">
+     
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="as/ven/apexcharts/apexcharts.min.js"></script>
+  <script src="as/ven/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="as/ven/chart.js/chart.umd.js"></script>
+  <script src="as/ven/echarts/echarts.min.js"></script>
+  
+  <!-- Template Main JS File -->
+  <script src="as/js/main.js"></script>
+
+  
+
+</script>
+
+</body>
+
+</html>
+ 

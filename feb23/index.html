@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Year and Month</title>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+    #myChart {
+      max-width: 60%;
+      max-height: 60vh;
+    }
+    </style>
+</head>
+<body>
+		<label for="machine">Select a machine:</label>
+	<select id="machine" onchange="updateChart()">
+	<option value="">--Please select a machine--</option>
+	<option value="machine1">Machine 1</option>
+	<option value="machine2">Machine 2</option>
+	<option value="machine3">Machine 3</option>
+	<option value="machine4">Machine 4</option>
+	</select><br><br>
+
+	<label for="year">Select a year:</label>
+	<select id="year" onchange="updateMonthSelector()">
+	<option value="">--Please select a year--</option>
+	<option value="2021">2021</option>
+	<option value="2022">2022</option>
+	<option value="2023">2023</option>
+	<option value="2024">2024</option>
+	<option value="2025">2025</option>
+	</select><br><br>
+
+	<label for="month">Select a month:</label>
+	<select id="month" onchange="updateChart()">
+	<option value="">--Please select a month--</option>
+	</select>
+	<canvas id="myChart"></canvas>
+
+	<script>
+		const chartData = {
+		labels: [],
+		datasets: [{
+			label: "Card Users",
+			data: [],
+			backgroundColor: "rgb(79, 255, 176)",
+			borderColor: "rgb(106, 238, 176)",
+			borderWidth: 2
+		}]
+		};
+
+		const chartOptions = {
+		scales: {
+			yAxes: [{
+			ticks: {
+				beginAtZero: true
+			}
+			}]
+		}
+		};
+
+		const chart = new Chart(document.getElementById("myChart"), {
+		type: 'bar',
+		data: chartData,
+		options: chartOptions
+		});
+
+		function updateMonthSelector() {
+		const yearSelector = document.getElementById("year");
+		const monthSelector = document.getElementById("month");
+
+		// clear existing month options
+		monthSelector.innerHTML = "";
+
+		// get selected year
+		const selectedYear = yearSelector.value;
+
+		// create new month options based on selected year
+		if (selectedYear === "") {
+			const defaultOption = document.createElement("option");
+			defaultOption.text = "--Please select a year first--";
+			monthSelector.add(defaultOption);
+		} else {
+			const monthNames = [
+			"January",
+			"February",
+			"March",
+			"April",
+			"May",
+			"June",
+			"July",
+			"August",
+			"September",
+			"October",
+			"November",
+			"December"
+			];
+			for (let i = 0; i < monthNames.length; i++) {
+			const option = document.createElement("option");
+			option.value = i + 1;
+			option.text = monthNames[i];
+			monthSelector.add(option);
+			}
+		}
+		updateChart();
+		}
+
+		function updateChart() {
+		const machineSelector = document.getElementById("machine");
+		const yearSelector = document.getElementById("year");
+		const monthSelector = document.getElementById("month");
+
+		const selectedMachine = machineSelector.value;
+		const selectedYear = yearSelector.value;
+		const selectedMonth = monthSelector.value;
+
+		if (selectedMachine !== "" && selectedMachine === "machine1" && selectedYear !== "" && selectedMonth !== "") {
+			const apiUrl = `https://cors-anywhere.herokuapp.com/http://trifrnd.in/Pankaj/Arraychart2.php?year=${selectedYear}&month=${selectedMonth}`;
+
+			fetch(apiUrl)
+			.then(response => response.json())
+			.then(data => {
+				console.log("API Response:", data);
+
+				// create an object with date-wise card users data
+				const cardUsersData = {};
+				data.forEach(item => {
+				const dateParts = item.date.split("-");
+				const year = parseInt(dateParts[0]);
+				const month = parseInt(dateParts[1]);
+				const date = parseInt(dateParts[2]);
+				if (year === parseInt(selectedYear) && month === parseInt(selectedMonth)) {
+					cardUsersData[date] = parseInt(item.card_users);
+				}
+				});
+				console.log("Card Users Data:", cardUsersData);
+
+				// update chart data with selected month's dates and card users data
+				const daysInMonth = new Date(selectedYear, selectedMonth, 0).getDate();
+				console.log("Days in Month:", daysInMonth);
+
+				chart.data.labels = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+				console.log("Chart Labels:", chart.data.labels);
+
+				chart.data.datasets[0].data = chart.data.labels.map(date => cardUsersData[date] || 0);
+				console.log("Chart Data:", chart.data.datasets[0].data);
+
+				chart.update();
+			})
+			.catch(error => console.log(error));
+		} 
+		else {
+			// clear chart data if no machine, year, or month is selected
+			chart.data.labels = [];
+			chart.data.datasets[0].data = [];
+			chart.update();
+			}
+		}
+		</script>
+	</body>
+</html>

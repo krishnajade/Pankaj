@@ -1,0 +1,60 @@
+<!Doctype html>
+<html>
+  <head>
+    <title>result</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <center>
+    <form>
+      <h2>DATA</h2>
+        <table id="T1">
+          <tr>
+            <td>Name:</td>
+              <td><span id="S1"></span></td>
+          <tr>
+            <td>Gender:</td>
+            <td><span id="S2"></span></td>
+          </tr>
+          <tr>
+            <td>Education:</td>
+            <td><span id="S3"></span></td>
+          </tr>
+          <tr>
+            <td>Email ID:</td>
+            <td><span id="S4"></span></td>
+          </tr>
+          <tr>
+            <td>Languge Known:</td>
+            <td><span id="S11"></span></td>
+          </tr>
+          <tr>
+            <td>User Name:</td>
+            <td><span id="S6"></span></td>
+          </tr>
+          <tr>
+            <td>Passoword:</td>
+            <td><span id="S7"></span></td>
+          </tr>
+          <tr>
+            <td>Confirm Passoword:</td>
+            <td><span id="S8"></span></td>
+          </tr>
+        </table>
+      </form>
+  </center>
+  <script>
+
+      document.getElementById("S1").innerHTML=localStorage.getItem("a");
+      document.getElementById("S2").innerHTML=localStorage.getItem("b");
+      document.getElementById("S3").innerHTML=localStorage.getItem("c");
+      document.getElementById("S4").innerHTML=localStorage.getItem("d");
+      document.getElementById("S11").innerHTML=localStorage.getItem("k");
+      document.getElementById("S6").innerHTML=localStorage.getItem("e");
+      document.getElementById("S7").innerHTML=localStorage.getItem("f");
+      document.getElementById("S8").innerHTML=localStorage.getItem("g");
+      localStorage.clear();       // Use to clear all localstorage data
+
+  </script>
+  </body>
+</html>

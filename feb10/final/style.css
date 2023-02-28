@@ -1,0 +1,70 @@
+body{
+    font-family: sans-serif;
+  }
+  #heading{
+  font-size: 25px;
+  text-decoration: underline;
+  color: rgb(18, 49, 135);
+  }
+  table{
+    margin-top: 2%;
+    padding: 10px;
+    width: 50%;
+    font-size: 20px;
+    color: #fff;
+    background-color: rgb(89, 158, 228);
+  }
+  td {
+    padding: 5px;
+  }
+  #btn1{
+    padding: 10px;
+    width: 70px;
+    background-color: rgb(121, 195, 245);
+    border: none;
+    font-weight: 700;
+    font-size: 15px;
+    border-radius: 5px;
+    color: #fff;
+  }
+ #btn1:hover{
+    background-color: #fff;
+    color: #000;
+  }
+  #printf, #print {
+    background: rgb(0, 204, 255);
+    color: #fff;
+    padding: 5px;
+    width: 70px;
+    border-radius: 5px;
+    border: none;
+  }
+  #printf:hover, #print:hover{
+    background: #fff;
+    color: #000;
+    /*border-radius: 30px;*/
+  }
+   input[type=text],[type=email]{
+    width: 80%;
+    height: 20px;
+    font-size: 15px;
+  }
+  #address{
+    width: 80%;
+    font-size: 15px;
+  }
+  select{
+    width: 50%;
+    height: 25px;
+    font-size: 15px;
+  }
+  
+  @media (max-width: 600px){
+    table{
+      width: 100%;
+    }
+  }
+
+  
+
+ 

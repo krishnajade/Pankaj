@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+  <title>Charts </title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+ 
+</head>
+
+<body>
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Chart</h1>
+   
+    </div><!-- End Page Title -->
+
+  
+
+    <section class="section">
+      <div class="row">
+
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Bar CHart</h5>
+
+              <!-- Bar Chart -->
+              <canvas id="barChart" style="max-height: 400px;"></canvas>
+              <script>
+                const apiUrl1 = 'https://cors-anywhere.herokuapp.com/http://trifrnd.in/Pankaj/arraychart.php';
+                    fetch(apiUrl1)
+                    .then(response => response.json())
+                    .then(data => {
+                        const dates = data.map(item => item.date); // extract x-axis values (dates) from API response
+                        const CoinUsers = data.map(item => item.coin_users); // extract y-axis values (coin users) from API response
+
+                        const chartData = {
+                        labels: dates,
+                        datasets: [{
+                            label: 'Coin',
+                            data: CoinUsers,
+                            backgroundColor: 'green',
+                            borderColor: 'gray',
+                            borderWidth: 1
+                        }]
+                        };
+
+                        const ctx = document.getElementById('barChart').getContext('2d');
+                        const myChart1 = new Chart(ctx, {
+                        type: 'bar',
+                        data: chartData,
+                        options: {
+                            scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                display: true,
+                                text: 'Count'
+                                }
+                            },
+                            x: {
+                                title: {
+                                display: true,
+                                text: 'Days'
+                                }
+                            }
+                            }
+                        }
+                        });
+                    });
+                    
+              </script>
+              <!-- End Bar CHart -->
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+ 
+
+</body>
+
+</html>

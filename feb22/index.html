@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="sub-header">
+    <input type="button" value="Print" id="btn" onclick="printdoc()">
+  </div>
+  <div class="header">
+    <center><h3>Chart</h3></center>
+  </div>
+  
+  <div class="row">
+    <div class="col1">
+        <canvas id="myChart1"></canvas>
+    </div>
+    <div class="col2">
+        <canvas id="myChart2"></canvas>
+    </div>
+</div>
+  <script>
+  const apiUrl1 = 'https://cors-anywhere.herokuapp.com/http://trifrnd.in/Pankaj/arraychart.php';
+    fetch(apiUrl1)
+      .then(response => response.json())
+      .then(data => {
+        const dates = data.map(item => item.date); // extract x-axis values (dates) from API response
+        const CoinUsers = data.map(item => item.coin_users); // extract y-axis values (coin users) from API response
+
+        const chartData = {
+          labels: dates,
+          datasets: [{
+            label: 'Coin',
+            data: CoinUsers,
+            backgroundColor: 'green',
+            borderColor: 'gray',
+            borderWidth: 1
+          }]
+        };
+
+        const ctx = document.getElementById('myChart1').getContext('2d');
+        const myChart1 = new Chart(ctx, {
+          type: 'bar',
+          data: chartData,
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: 'Count'
+                }
+              },
+              x: {
+                title: {
+                  display: true,
+                  text: 'Days'
+                }
+              }
+            }
+          }
+        });
+      });
+
+    const apiUrl2 = 'https://cors-anywhere.herokuapp.com/http://trifrnd.in/Pankaj/Arraychart2.php';
+    fetch(apiUrl2)
+      .then(response => response.json())
+      .then(data => {
+        const dates = data.map(item => item.date); // extract x-axis values (dates) from API response
+        const CardUsers = data.map(item => item.card_users); // extract y-axis values (coin users) from API response
+
+        const chartData = {
+          labels: dates,
+          datasets: [{
+            label: 'Card',
+            data: CardUsers,
+            backgroundColor: 'orange',
+            borderColor: 'gray',
+            borderWidth: 1
+          }]
+        };
+
+        const ctx = document.getElementById('myChart2').getContext('2d');
+        const myChart2 = new Chart(ctx, {
+          type: 'bar',
+          data: chartData,
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: 'Count'
+                }
+              },
+              x: {
+                title: {
+                  display: true,
+                  text: 'Days'
+                }
+              }
+            }
+          }
+        });
+      });
+
+      function printdoc() {
+  var a = document.getElementById("btn");
+  a.style.visibility = 'hidden';
+  // Show the axis titles
+  document.querySelectorAll('.chartjs-hidden-iframe').forEach((el) => {
+    const iframe = el.contentWindow;
+    iframe.document.querySelector('.chartjs-chart-canvas').style.display = 'none';
+    iframe.document.querySelector('.chartjs-canvas-container').style.display = 'block';
+    // Remove the date, title, and URL from the chart
+    iframe.document.querySelector('.chartjs-canvas-container').querySelector('.chartjs-caption').style.display = 'none';
+  });
+  window.print();
+  // Hide the axis titles again after printing is done
+  document.querySelectorAll('.chartjs-hidden-iframe').forEach((el) => {
+    const iframe = el.contentWindow;
+    iframe.document.querySelector('.chartjs-chart-canvas').style.display = 'block';
+    iframe.document.querySelector('.chartjs-canvas-container').style.display = 'none';
+  });
+  a.style.visibility = 'visible';
+}
+
+
+  </script>
+</body>
+</html>

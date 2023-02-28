@@ -1,0 +1,151 @@
+<!Doctype html>
+<html>
+    <head>
+        <title>Hard copy</title>
+        <link rel="stylesheet" href="style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <center>
+        <form action="Form.html">
+        <table>
+            <tr>
+                <th colspan="2" id="heading">Client Details</th>
+            </tr>
+            <tr>
+                <td>Client Name:</td>
+                <td>
+                    <span id="A1"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Client Address</td>
+                <td>
+                    <span id="A2"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Contact Person Name</td>
+                <td>
+                    <span id="A3"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Contact Person Number</td>
+                <td>
+                    <span id="A4"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Email ID:</td> 
+                 <td>   
+                    <span id="A5"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Industry Type:</td>
+                <td>
+                    <span id="A6"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Office Time</td>
+                <td>
+                    <span id="A7"></span> To
+                    <span id="A8"></span>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2" id="heading">Call Details</th>
+            </tr>
+            <tr>
+                <td>Call Type:</td>
+                <td>
+                    <span id="A9"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Service Engineer required:</td>
+                <td>   
+                    <span id="A10"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>Call Booking</td>
+                <td>   
+                    <span id="A11"></span> <span id="A12"></span>
+
+                </td>
+            </tr>
+            <tr>
+                <td>Call Details</td>
+                <td>   
+                    <span id="A13"></span>
+                </td>
+            </tr>
+           <!--  <tr>
+                <th colspan="1">
+                <td><input type="button" value="Print" id="btn1" onclick="printdoc()"><td>
+                </th>
+            </tr>-->
+        </table>
+    </form>
+
+
+
+</center>
+        <script>
+            
+            document.getElementById("A1").innerHTML=localStorage.getItem("get1");
+            document.getElementById("A2").innerHTML=localStorage.getItem("get2");
+            document.getElementById("A3").innerHTML=localStorage.getItem("get3");
+            document.getElementById("A4").innerHTML=localStorage.getItem("get4");
+            document.getElementById("A5").innerHTML=localStorage.getItem("get5");
+            document.getElementById("A6").innerHTML=localStorage.getItem("get6");
+
+            var TimeS=localStorage.getItem("get7");
+            document.getElementById("A7").innerHTML=convertTo12HourFormat(TimeS);
+            var TimeE=localStorage.getItem("get8");
+            document.getElementById("A8").innerHTML=convertTo12HourFormat(TimeE);
+
+            document.getElementById("A9").innerHTML=localStorage.getItem("get9");
+            document.getElementById("A10").innerHTML=localStorage.getItem("get10");
+
+            var Date=localStorage.getItem("get11");
+            document.getElementById("A11").innerHTML=changeformat(Date);
+            var Time=localStorage.getItem("get12");
+            document.getElementById("A12").innerHTML=convertTo12HourFormat(Time);
+            document.getElementById("A13").innerHTML=localStorage.getItem("get13");
+            /*localStorage.clear();*/
+
+
+
+
+
+           /* function printdoc(){
+                var a= document.getElementById("btn1");
+                a.style.visibility='hidden';
+                window.print()
+                a.style.visibility='visible';
+            }*/
+            function changeformat(val){
+                const myArray = val.split("-");
+                let year = myArray[0];
+                let month = myArray[1];
+                let day = myArray[2];
+                let formatteddate = day + "/" + month + "/" + year;
+                return formatteddate;
+            }
+            function convertTo12HourFormat(time24) {
+                let time = time24.split(":");
+                let hours = parseInt(time[0]);
+                let minutes = time[1];
+                let period = hours >= 12 ? "PM" : "AM";
+                hours = ((hours + 11) % 12 + 1);
+                return `${hours}:${minutes} ${period}`;
+            }
+
+ 
+        </script>
+    </body>
+</html>

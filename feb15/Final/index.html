@@ -1,0 +1,135 @@
+<!Doctype html>
+<html>
+    <head>
+        <title>Call log page</title>
+        <link rel="stylesheet" href="style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <form action="Data.html" onsubmit="msg()">
+            <center>
+            <table>
+                <tr>
+                    <th colspan="2" id="heading">Client Details</th>
+                </tr>
+                <tr>
+                    <td>Client Name</td>
+                    <td><input type="text" placeholder="enter client name"   id="cname" maxlength="25" required></td>
+                </tr>
+                <tr>
+                    <td>Client Address</td>
+                    <td>
+                      <textarea name="address" rows="3" cols="" placeholder="address..."  id="address" required></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Contact Person Name</td>
+                    <td><input type="text" placeholder="enter person name" id="cpname" maxlength="25" required></td>
+                </tr>
+                <tr>
+                    <td>Contact Person Number</td>
+                    <td>
+                        <input type="text" placeholder="xxxxxx6563" maxlength="10"  id="cpnumber" required onchange="Mobile()" onkeypress="isInputNumber(event)"title="starting with only 6,7,8,9 digits accepted">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email ID</td>
+                    <td>
+                      <input type="email" placeholder="xxxx@gmail.com" maxlength="30" id="email" onchange="validemail()" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Industry Type:</td>
+                        <td><select id="industry" name="industry" required>
+                        <option value="">--select--</option>
+                        <option >Agriculture; plantations;other rural sectors. </option>
+                        <option >Basic Metal Production. </option>
+                        <option >Chemical industries. </option>
+                        <option >Financial services; professional services. </option>
+                        <option >Food; drink; tobacco. </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+					<td>Office Time</td>
+					<td>
+						<input type="time" id="OTS" required>
+						To 
+						<input type="time" id="OTE" required>
+					</td>
+				</tr>
+                    <tr>
+                    <th colspan="2" id="heading">Call Details</th>
+                </tr>
+                <tr>
+                    <td>Call Type:</td>
+                        <td><select id="calltype" name="calltype" required>
+                        <option value="">--select--</option>
+                        <option >Desktop</option>
+                        <option >Laptop</option>
+                        <option >Printer</option>
+                        <option >Server</option>
+                        <option >Network</option>
+                        <option >Other</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Service Engineer required:</td>
+                        <td><select id="ser" name="ser" required>
+                        <option value="">--select--</option>
+                        <option >Level 1</option>
+                        <option >Level 2</option>
+                        <option >Level 3</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Call Booking</td>
+                    <td>
+						<input type="date" id="DT1" onchange="selectDatevalidation()" required>
+						<input type="time" id="DT2" onchange="calculateTime()" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Call Details</td>
+                    <td>
+                      <textarea name="address" rows="5" cols="" placeholder="type here..."  id="calldetails" required></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <tr>
+                        <th colspan="2"><input type="submit" id="btn1" value="submit" onclick="passvalues()" >
+                        <input type="reset" id="btn1" value="Reset"></th>
+                    </tr>
+                </tr>
+            </table>
+        </form>
+    </center>
+    <script src="file.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      

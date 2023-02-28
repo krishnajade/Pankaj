@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bar Chart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+  <style>
+    #myChart{
+      max-width: 50%;
+      max-height: 50vh;
+    }
+  </style>
+</head>
+<body>
+   <center> <h1>Bar Chart</h1></center>
+    <canvas id="myChart2"></canvas>
+  <script>
+    const apiUrl2 = 'https://cors-anywhere.herokuapp.com/http://trifrnd.in/Pankaj/Arraychart2.php';
+    fetch(apiUrl2)
+      .then(response => response.json())
+      .then(data => {
+        const dates = data.map(item => item.date); // extract x-axis values (dates) from API response
+        const CardUsers = data.map(item => item.card_users); // extract y-axis values (coin users) from API response
+
+        const chartData = {
+          labels: dates,
+          datasets: [{
+            label: 'Card Users',
+            data: CardUsers,
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+          }]
+        };
+
+        const ctx = document.getElementById('myChart2').getContext('2d');
+        const myChart = new Chart(ctx, {
+          type: 'bar',
+          data: chartData,
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
+        });
+      });
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+body{
+    font-family: sans-serif;
+  }
+  #heading{
+  font-size: 25px;
+  text-decoration: underline;
+  color: #171819;
+  text-shadow: 2px 2px 4px #fff;
+  }
+  
+  table{
+    margin-top: 2%;
+    padding: 5px;
+    width: 50%;
+    font-size: 20px;
+    color: #fff;
+    background-image: linear-gradient(to left, #00b4db, #0083b0);  }
+  td {
+    padding: 5px;
+  }
+  #panf{
+    width: 90px;
+  }
+  #Previewbtn{
+    padding: 5px;
+    width: 70px;
+    background-color:rgb(26, 18, 233);
+    border: none;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+
+  }
+  
+  #btn1{
+    padding: 8px;
+    width: 70px;
+    background-color:  rgb(26, 18, 233);
+    border: none;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+  }
+ #btn1:hover, #Previewbtn:hover{
+    background-color: #fff;
+    color: #000;
+  }
+ 
+   input[type=text],[type=email]{
+    width: 80%;
+    height: 20px;
+    font-size: 15px;
+  }
+  #address{
+    width: 80%;
+    font-size: 15px;
+  }
+  select{
+    width: 50%;
+    height: 25px;
+    font-size: 15px;
+  }
+
+  @media (max-width: 600px){
+    table{
+      width: 100%;
+    }
+  }
+
+  
+
+ 

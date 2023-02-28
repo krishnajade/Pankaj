@@ -1,0 +1,176 @@
+<!Doctype html>
+<html>
+    <head>
+        <title>Project1</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="file.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <form action="Data.html" onsubmit="msg()">
+            <center>
+            <table>
+                <tr>
+                    <th colspan="2" id="heading">Company Details</th>
+                </tr>
+                <tr>
+                    <td>Company Name</td>
+                    <td><input type="text" placeholder="Enter company name"   id="name" maxlength="15" required></td>
+                </tr>
+                <tr>
+                    <td>Owner Name</td>
+                    <td><input type="text" placeholder="Enter owner name" id="on" maxlength="15" required></td>
+                </tr>
+                <tr>
+                    <td>Company Address</td>
+                    <td>
+                      <textarea name="address"rows="3" cols="" placeholder="Address1"  id="address" required></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>State</td>
+                    <td>
+                      <select name="option1" id="selct1" required>
+                        <option value="" selected="selected">--Section--</option >
+                      </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>City</td>
+                    <td>
+                      <select name="option2" id="selct2" required>
+                        <option value="" selected="selected">Select</option >
+                      </select>
+                    </td>
+                  </tr>
+                <tr>
+                <tr>
+                    <td>Landline Number</td>
+                    <td>
+                        <input type="text" placeholder="xxxxxx6789" maxlength="15" onkeypress="isInputNumber(event)" >
+                    </td>
+                </tr>
+                <tr>
+                    <td>Website</td>
+                    <td><input type="text" placeholder="Enter domain name" id="url" maxlength="100" onchange="validateURL()" required></td>
+                </tr>
+                <tr>
+                    <td>Email ID</td>
+                    <td>
+                      <input type="email" placeholder="xxxx@gmail.com" maxlength="30" id="email2" onchange="validemail2()" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>GST Number</td>
+                    <td>
+                        <input type="text" id="gstNumber" placeholder="enter 15 digit gst number" required maxlength="15" onchange="validateGSTNumber()">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Pancard Number</td>
+                    <td>
+                        <input type="text" placeholder="xxxxxxxxxx" maxlength="10"  id="pan" onchange="pancard()" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Pan card</td>
+                    <td>
+                        <input type="file" id="panf"   class="file-input" onchange="Panf()" required>
+                        <input type="submit" id="Previewbtn" class="preview-button" value="View" onclick="imgfile()">
+                    </td>
+                </tr>
+                
+
+                <tr>
+                    <th colspan="2" id="heading">Contact Details</th>
+                </tr>
+                <tr>
+                    <td>Contact person name</td>
+                    <td><input type="text" placeholder="Enter contact person name" id="first" maxlength="15" required></td>
+                </tr>
+                <tr>
+                    <td>Mobile Number</td>
+                    <td>
+                        <input type="text" placeholder="xxxxxx6563" maxlength="10"  id="mobilee" required onchange="Mobile()" onkeypress="isInputNumber(event)"title="starting with only 6,7,8,9 digits accepted">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email ID</td>
+                    <td>
+                      <input type="email" placeholder="xxxx@gmail.com" maxlength="30" id="email" onchange="validemail()" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td>
+                        <input type="radio" name="gender" value="male" id="male" checked> Male
+                        <input type="radio" name="gender" value="female" id="female"> Female
+                    </td>
+                </tr>
+                <tr>
+                    <td>Landline Number</td>
+                    <td>
+                        <input type="text" placeholder="xxxxxx6789" maxlength="15" onkeypress="isInputNumber(event)" >
+                    </td>
+                </tr>
+                <tr>
+                    <td>Extention Number</td>
+                    <td><input type="text" placeholder="xxxxxx6789"  maxlength="5" onkeypress="isInputNumber(event)" ></td>
+                </tr>
+                <tr>
+                    <td>Position:</td>
+                        <td><select id="position" name="position" required>
+                        <option value="">select</option>
+                        <option >Machenical Engineer</option>
+                        <option >Software Engineer</option>
+                        <option >Electrical Engineer</option>
+                        <option >Civil Engineer</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td>
+                        <input type="text" id="pass" onchange="passlength()" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>ReType Password</td>
+                    <td>
+                        <input type="text" id="rpass" onchange="password()" required>
+                    </td>
+                </tr>
+                <tr>
+                    <tr>
+                        <th colspan="2"><input type="submit" id="btn1" value="submit" onclick="passvalues()">
+                        <input type="reset" id="btn1" value="Reset"></th>
+                    </tr>
+                </tr>
+            </table>
+        </form>
+    </center>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      

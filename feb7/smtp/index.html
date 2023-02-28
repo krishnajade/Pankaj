@@ -1,0 +1,49 @@
+
+<!Doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <script src="s.js"></script>
+    </head>
+    <body>
+
+    <h2 class="titleText"><span>C</span>ontact Us </h2>
+  <div class="Crow">
+  <div class="Col1"><h4>Send message</h4>
+    <form id="Contactform" onsubmit="send(); return false">
+      <div id="error_message"></div>
+        <table class="con">
+          <tr>
+            <td>Name</td>
+            <td><input type="text" placeholder="enter your name"  id="Name"></td>
+        </tr>
+        <tr>
+            <td>Email ID</td>
+            <td> <input type="email" placeholder="xxxx@gmail.com" id="Email" ></td>
+        </tr>
+        <tr>
+            <td>Mobile Number</td>
+            <td><input type="text" placeholder="xxx-xxx-8157" maxlength="10" id="Contact"></td>
+        </tr>
+        <tr>
+          <td>Subject</td>
+          <td><input type="text" placeholder="How can we help you" id="Subject"></td>
+        </tr>
+        <tr>
+            <td>Message</td>
+            <td><textarea  rows="3" cols="20"placeholder="Write something" id="message"></textarea></td>
+        </tr>
+        <tr>
+          <th colspan="2"><button type="submit" id="btn">Send</button></th>
+      </tr>
+        </table>
+    </form>
+  </div>
+
+      
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+</body>
+</html>
+
+  

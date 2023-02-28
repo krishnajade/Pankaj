@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Values for Different States</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    #myChart {
+      max-width: 60%;
+      max-height: 60vh;
+    }
+    #heading{
+        text-transform: uppercase;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        color:  rgb(56, 131, 197);
+        margin-left: 5%;
+    }
+  
+    </style>
+</head>
+<body>
+    <h1 id="heading">Pie Chart with different states</h1>
+  <canvas id="myChart"></canvas>
+  <script>
+    // Data
+    var values = [75, 15, 27, 10, 5, 19, 22, 13];
+    var labels = ['Maharashtra', 'Gujarat', 'MP', 'UP', 'Delhi', 'Goa', 'Odisha', 'Kerala'];
+    var colors = ['#ff9999','#66b3ff','#99ff99','#ffcc99','#99ffff','#ffb3e6','#c2c2f0','#ffb3b3'];
+
+    // Chart configuration
+    var config = {
+      type: 'pie',
+      data: {
+        labels: labels,
+        datasets: [{
+          data: values,
+          backgroundColor: colors
+        }]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'Values for Different States'
+        }
+      }
+    };
+    // Create chart
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, config);
+  </script>
+</body>
+</html>
+
+
+
+
+
+

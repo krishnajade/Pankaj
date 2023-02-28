@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Example Form</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+      #showButton {
+        display: none;
+      }
+    </style>
+  </head>
+  <body><center>
+    <form onsubmit="submitForm(event)">
+    <section id="center">
+        <h1>Checkbox  form</h1>
+            <label for="inputField">Enter a value:</label>
+            <input type="text" id="inputField" name="inputField">
+        <button type="submit" id="btn">Submit</button><br><br>
+        </form>
+            <div id="output"></div>
+        <button id="showButton" type="button" onclick="showSelected()">Show</button>
+
+      </center>
+
+    
+    <script>
+      var values = []; // create an empty array to store input values
+      
+      function submitForm(event) {
+        event.preventDefault();
+        var inputValue = document.getElementById("inputField").value;
+        if (inputValue === "") {
+          alert("Please enter a value!");
+          return;
+        }
+        values.push(inputValue); // add the input value to the array
+        document.getElementById("inputField").value = ""; // clear the input field
+        updateOutput();
+        document.getElementById("showButton").style.display = "block"; // show the "Show" button
+      }
+      
+      function updateOutput() {
+        var outputDiv = document.getElementById("output");
+        var outputHTML = "<p></p>";
+        for (var i = 0; i < values.length; i++) {
+          outputHTML += '<label><input type="checkbox" name="valueCheckbox" value="' + values[i] + '"> ' + values[i] + '</label><br>';
+        }
+        outputDiv.innerHTML = outputHTML;
+      }
+      
+            function showSelected() {
+        var selected = document.querySelectorAll('input[name="valueCheckbox"]:checked');
+        if (selected.length === 0) {
+          // remove any existing messages
+          var existingMessages = document.querySelectorAll('.selected-message');
+          for (var i = 0; i < existingMessages.length; i++) {
+            existingMessages[i].remove();
+          }
+          return;
+        }
+        // remove any existing messages before creating a new one
+        var existingMessages = document.querySelectorAll('.selected-message');
+        for (var i = 0; i < existingMessages.length; i++) {
+          existingMessages[i].remove();
+        }
+        var selectedValues = [];
+        for (var i = 0; i < selected.length; i++) {
+          selectedValues.push(selected[i].value);
+        }
+        var selectedDiv = document.createElement("div");
+        selectedDiv.classList.add('selected-message'); // add a class to the message so we can remove it later
+        selectedDiv.innerHTML = "<p>Selected values: " + selectedValues.join(", ") + "</p>";
+        document.body.appendChild(selectedDiv);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>City Location List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="file.js"></script>
+   
+</head>
+<body><center>
+	<h2>Service engineer list</h2>
+    <label>Location:</label>
+	<select id="cityList" onchange="displayPersonDetails()">
+		<option value="0">--Select a city--</option>
+		<option value="1">Nashik</option>
+		<option value="2">Mumbai</option>
+		<option value="3">Pune</option>
+		<option value="4">Delhi</option>
+	</select>
+	<br><br>
+	<table id="personDetailsTable">
+		<thead disabled>
+			<tr>
+				<td>Name</td>
+				<td>Contact</td>
+				<td>Location</td>
+			</tr>
+		</thead>
+		<tbody></tbody>
+	</table>
+	</center>
+   
+	
+</body>
+</html>

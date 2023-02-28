@@ -1,0 +1,20 @@
+<body>
+value <input type="checkbox" value="box" id="myCheckbox" onclick="check()">
+<script>
+    function check(){
+    const checkbox = document.getElementById("myCheckbox");
+
+// Save checkbox state to local storage when it changes
+checkbox.addEventListener("change", function() {
+  localStorage.setItem("checkboxState", checkbox.checked);
+});
+
+// Retrieve checkbox state from local storage and update the checkbox
+const savedState = JSON.parse(localStorage.getItem("checkboxState"));
+checkbox.checked = savedState || false;
+
+// Print the checkbox state to the console
+console.log("Checkbox is checked:", checkbox.checked);}
+
+    </script>
+</body>

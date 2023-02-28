@@ -1,0 +1,53 @@
+<!Doctype html>
+<html>
+  <head>
+    <title>Sign In</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <center>
+    <form action="data.html">
+      <h2>Sign In</h2>
+      <table id="T2">
+        <tr>
+          <td>User Name:</td>
+          <td>
+            <input type="text" placeholder="xxxx" id="user" required>
+          </td>
+        </tr>
+        <tr>
+          <td>Passoword</td>
+          <td>
+            <input type="text" placeholder="xxxx" id="pass" required>
+            </td>
+          </tr>
+          <tr>
+            <th colspan="2">
+              <button type="submit" id="btn" value="click" onclick="getvalue()">Submit</button>
+            </th>
+          </tr>
+      </table>
+    </form>
+  </center>
+
+        <script>
+          function getvalue(){
+          var get1 = localStorage.getItem("e");
+          var get2 = localStorage.getItem("f");
+          var c=document.getElementById("user").value;
+          var d=document.getElementById("pass").value;
+
+          if(get1==c && get2==d){
+            alert("login succsessfully");
+            return true;
+          }
+          else{
+            alert("Username or Password is invalid");
+           document.getElementById("user").value="";
+           document.getElementById("pass").value="";
+            return false;
+          }
+        }
+      </script>
+    </body>
+</html>

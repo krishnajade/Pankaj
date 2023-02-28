@@ -1,0 +1,144 @@
+<!Doctype html>
+<html>
+  <head>
+    <title>SIGN UP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+  </head>
+        <center>
+          <form action="signin.html" onsubmit="submitform()">
+            <h2>Sign Up form</h2>
+              <table id="T1">
+                <tr>
+                  <td>Name:</td>
+                    <td>
+                      <input type="text" placeholder="Full Name" maxlength="30" id="name" required>
+                    </td>
+                </tr>
+                <tr>
+                  <td>Gender</td>
+                  <td><input type="radio" name="gender" value="male" id="gender"> Male
+                    <input type="radio" name="gender" value="female" id="gender"> Female
+                  </td>
+                </tr>
+                <tr>
+                  <td>Education</td>
+                  <td><select id="edu" name="edu" required>
+                    <option value="">Select Language</option>
+                    <option >Fy Bcom</option>
+                    <option >sy Bcom</option>
+                    <option >ty Bcom</option>
+                  </td>
+                </tr>
+                <tr>
+                    <td>Email ID</td>
+                    <td>
+                      <input type="email" placeholder="xxxx@gmail.com" maxlength="30" id="email" onchange="validemail()" required>
+                    </td>
+                </tr>
+                <tr>
+                  <td>Language Known</td>
+                  <td>
+                    <input type="checkbox" value="Marathi" name="box">Marathi
+                    <input type="checkbox" value="Hindi"  name="box">Hindi
+                    <input type="checkbox" value="English"  name="box">English
+                  </td>
+                </tr>
+                <tr>
+                  <td>User Name</td>
+                  <td>
+                    <input type="text" placeholder="xxxx" maxlength="30" id="username" required>
+                  </td>
+                </tr>
+              <tr>
+                <td>Passoword</td>
+                <td>
+                  <input type="text" placeholder="xxxx" maxlength="30" id="passoword" required>
+                </td>
+                </tr>
+              <tr>
+                <td>Confirm Passoword</td>
+                <td>
+                  <input type="text" placeholder="xxxx" maxlength="30" id="cpassword" onchange="passvalidation()" required>
+                </td>
+              </tr>
+              <tr>
+                <th colspan="2">
+                  <button type="submit" id="btn" value="click" onclick="passvalues();">Submit</button>
+                </th>
+              </tr>
+            </table>
+          </form>
+        </center>
+
+    <script>
+
+    function passvalues(){
+      //Use for checkbox checked value get only
+    var checkboxes =  document.getElementsByName('box');
+    var result = "";
+     for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    result += checkboxes[i].value +"  ";
+                }
+            }
+            localStorage.setItem("k", result);
+            
+    var name=document.getElementById("name").value;
+    localStorage.setItem("a",name);
+   
+    var Edu=document.getElementById("edu").value;
+    localStorage.setItem("c",Edu);
+
+    var Email=document.getElementById("email").value;
+    localStorage.setItem("d",Email);
+
+    var Username=document.getElementById("username").value;
+    localStorage.setItem("e",Username);
+   
+    var Passoword=document.getElementById("passoword").value;
+    localStorage.setItem("f",Passoword);
+
+    var Cpassword=document.getElementById("cpassword").value;
+    localStorage.setItem("g",Cpassword);
+
+    var f = document.getElementsByName("gender");
+    var n;
+    for(i=0; i<=f.length;i++){
+
+        if(f[i].checked){
+            n = f[i].value;
+        }
+        localStorage.setItem("b",n);
+    }
+  }
+
+  function passvalidation(){
+    var m=document.getElementById("passoword").value;
+    var s=document.getElementById("cpassword").value;
+    if(m==s){
+      return true
+    }
+    else{
+      alert("Password is not matched! Try again");
+      document.getElementById("cpassword").value = "";
+      return false;
+    }
+  }
+
+  function validemail(){
+    var x=document.getElementById("email").value;
+    var atposition=x.indexOf("@");
+    var dotposion=x.lastIndexOf(".");
+    if(atposition<1 || dotposion<atposition+2 || dotposion+2>=x.length){
+      alert("Please enter valid email");
+      document.getElementById("email").value="";
+      return false;
+    }
+  }
+  function submitform() {
+    alert("Your datails has been successfully submitted! Thank You");
+  }
+      </script>
+    </body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+  <title>Charts</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+ 
+</head>
+
+<body>
+
+ 
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Chart.js</h1>
+    </div><!-- End Page Title -->
+
+  
+    <section class="section">
+      <div class="row">
+
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Coin Uses</h5>
+
+              <!-- Line Chart -->
+              <canvas id="lineChart" style="max-height: 400px;"></canvas>
+              <script>
+                const apiUrl1 = 'https://cors-anywhere.herokuapp.com/http://trifrnd.in/Pankaj/arraychart.php';
+            fetch(apiUrl1)
+            .then(response => response.json())
+            .then(data => {
+                const dates = data.map(item => item.date); // extract x-axis values (dates) from API response
+                const CoinUsers = data.map(item => item.coin_users); // extract y-axis values (coin users) from API response
+
+                const chartData = {
+                labels: dates,
+                datasets: [{
+                    label: 'Coin',
+                    data: CoinUsers,
+                    backgroundColor: 'green',
+                    borderColor: 'gray',
+                    borderWidth: 1
+                }]
+                };
+
+                const ctx = document.getElementById('lineChart').getContext('2d');
+                const myChart1 = new Chart(ctx, {
+                type: 'bar',
+                data: chartData,
+                options: {
+                    scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                        display: true,
+                        text: 'Count'
+                        }
+                    },
+                    x: {
+                        title: {
+                        display: true,
+                        text: 'Days'
+                        }
+                    }
+                    }
+                }
+                });
+            });
+              </script>
+              <!-- End Line CHart -->
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Card Uses</h5>
+
+              <!-- Bar Chart -->
+              <canvas id="barChart" style="max-height: 400px;"></canvas>
+              <script>
+                 const apiUrl2 = 'https://cors-anywhere.herokuapp.com/http://trifrnd.in/Pankaj/Arraychart2.php';
+    fetch(apiUrl2)
+      .then(response => response.json())
+      .then(data => {
+        const dates = data.map(item => item.date); // extract x-axis values (dates) from API response
+        const CardUsers = data.map(item => item.card_users); // extract y-axis values (coin users) from API response
+
+        const chartData = {
+          labels: dates,
+          datasets: [{
+            label: 'Card',
+            data: CardUsers,
+            backgroundColor: 'orange',
+            borderColor: 'gray',
+            borderWidth: 1
+          }]
+        };
+
+        const ctx = document.getElementById('barChart').getContext('2d');
+        const myChart2 = new Chart(ctx, {
+          type: 'bar',
+          data: chartData,
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                title: {
+                  display: true,
+                  text: 'Count'
+                }
+              },
+              x: {
+                title: {
+                  display: true,
+                  text: 'Days'
+                }
+              }
+            }
+          }
+        });
+      });
+              </script>
+              <!-- End Bar CHart -->
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Coin Uses(Pie Chart)</h5>
+
+              <!-- Pie Chart -->
+              <canvas id="pieChart" style="max-height: 400px;"></canvas>
+              <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  new Chart(document.querySelector('#pieChart'), {
+                    type: 'pie',
+                    data: {
+                      labels: [
+                        'Red',
+                        'Blue',
+                        'Yellow'
+                      ],
+                      datasets: [{
+                        label: 'My First Dataset',
+                        data: [300, 50, 100],
+                        backgroundColor: [
+                          'rgb(255, 99, 132)',
+                          'rgb(54, 162, 235)',
+                          'rgb(255, 205, 86)'
+                        ],
+                        hoverOffset: 4
+                      }]
+                    }
+                  });
+                });
+              </script>
+              <!-- End Pie CHart -->
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Card Uses(Pie Chart)</h5>
+
+              <!-- Doughnut Chart -->
+              <canvas id="doughnutChart" style="max-height: 400px;"></canvas>
+              <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  new Chart(document.querySelector('#doughnutChart'), {
+                    type: 'doughnut',
+                    data: {
+                      labels: [
+                        'Red',
+                        'Blue',
+                        'Yellow'
+                      ],
+                      datasets: [{
+                        label: 'My First Dataset',
+                        data: [300, 50, 100],
+                        backgroundColor: [
+                          'rgb(255, 99, 132)',
+                          'rgb(54, 162, 235)',
+                          'rgb(255, 205, 86)'
+                        ],
+                        hoverOffset: 4
+                      }]
+                    }
+                  });
+                });
+              </script>
+              <!-- End Doughnut CHart -->
+
+            </div>
+          </div>
+        </div>
+
+      
+    
+
+
+
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  
+
+</body>
+
+</html>

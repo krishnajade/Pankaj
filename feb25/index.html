@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamic Dropdown List Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <label for="machine">Select Machine Type:</label>
+    <select id="machine" onchange="updateYears()">
+        <option value="">--Select Machine--</option>
+        <option value="machine1">Machine 1</option>
+        <option value="machine2">Machine 2</option>
+        <option value="machine3">Machine 3</option>
+        <option value="machine4">Machine 4</option>
+    </select>
+
+    <label for="year">Select Year:</label>
+    <select id="year" onchange="updateMonths()">
+        <option value=""></option>
+    </select>
+
+    <label for="month">Select Month:</label>
+    <select id="month">
+        <option value=""></option>
+    </select>
+
+    <canvas id="barchart"></canvas>
+
+    <script>
+        function updateYears() {
+            var machineType = document.getElementById("machine").value;
+            var yearDropdown = document.getElementById("year");
+            yearDropdown.innerHTML = "<option value=''></option>";
+            for (var i = 2020; i <= 2025; i++) {
+                yearDropdown.innerHTML += "<option value='" + i + "'>" + i + "</option>";
+            }
+        }
+
+        function updateMonths() {
+    var year = document.getElementById("year").value;
+    var monthDropdown = document.getElementById("month");
+    monthDropdown.innerHTML = "<option value=''></option>";
+    var months = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+    if (year !== "") {
+        for (var i = 0; i < months.length; i++) {
+            monthDropdown.innerHTML += "<option value='" + months[i] + "'>" + months[i] + "</option>";
+        }
+    }
+
+    var machineType = document.getElementById("machine").value;
+    var year = document.getElementById("year").value;
+    if (machineType === "machine1" && year !== "") {
+        fetch("https://cors-anywhere.herokuapp.com/https://trifrnd.in/Pankaj/Arraychart2.php?machine=" + machineType + "&year=" + year)
+            .then(response => response.json())
+            .then(data => {
+                var labels = [];
+                var values = [];
+                data.forEach(item => {
+                    labels.push(item.date);
+                    values.push(item.card_users);
+                });
+
+                var barchartCanvas = document.getElementById("barchart");
+                var barchart = new Chart(barchartCanvas, {
+                    type: "bar",
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: "card users",
+                            data: values,
+                            backgroundColor: "rgba(255, 99, 132, 0.2)",
+                            borderColor: "rgba(255, 99, 132, 1)",
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error(error));
+    }
+}
+
+    </script>
+</body>
+</html

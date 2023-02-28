@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API Data Table</title>
+  <style>
+    #myTable {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 60%;
+      margin: auto;
+    }
+
+    #myTable td, #myTable th {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    #myTable tr:nth-child(even){background-color: #f2f2f2;}
+
+    #myTable tr:hover {background-color: #f76969;}
+
+    #myTable th:first-child, #myTable td:first-child {
+      max-width: 10px;
+    }
+
+    #myTable th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #04AA6D;
+      color: white;  
+    }
+  </style>
+</head>
+<body>
+  <table id="myTable">
+    <thead>
+      <tr>
+        <th>Sr. No.</th>
+        <th>Date</th>
+        <th>Coin Users</th>
+        <th>Card Users</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Table rows will be dynamically populated with data from API -->
+    </tbody>
+  </table>
+
+  <script>
+    // Define the API URL
+    const apiUrl = 'https://cors-anywhere.herokuapp.com/http://trifrnd.in/krishna/arrayk11.php';
+
+
+    // Fetch the data from the API and populate the table rows
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        const tableBody = document.querySelector('#myTable tbody');
+
+        data.forEach((user, index) => {
+          const row = document.createElement('tr');
+          const srNoCell = document.createElement('td');
+          const dateCell = document.createElement('td');
+          const coinUsersCell = document.createElement('td');
+          const cardUsersCell = document.createElement('td');
+
+          srNoCell.textContent = index + 1;
+          dateCell.textContent = user.date;
+          coinUsersCell.textContent = user.coin_users;
+          cardUsersCell.textContent = user.card_users;
+
+          row.appendChild(srNoCell);
+          row.appendChild(dateCell);
+          row.appendChild(coinUsersCell);
+          row.appendChild(cardUsersCell);
+
+          tableBody.appendChild(row);
+        });
+
+      });
+  </script>
+</body>
+</html>

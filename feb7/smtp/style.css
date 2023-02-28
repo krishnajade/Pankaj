@@ -1,0 +1,58 @@
+h4{
+    text-align: center;
+    border: 1px solid rgb(57, 243, 222);
+    border-radius: 20px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 30px;
+    background: #45bce8;
+    margin-bottom: 30px;
+  }
+  .con{
+    margin: auto;
+    height: 68vh;
+    width: 99%;
+    background: #c4ecfb;
+  }
+  .con td, th{
+    font-size: 20px;
+    padding-left: 30px;
+  }
+  .con select, .con input[type=text], .con input[type=email]{
+    height: 5vh;
+    width: 70%;
+    font-size: 17px;
+  }
+  #error_message{
+    text-align: right;
+    margin-right: 0px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: red;
+    font-weight: 700;
+  }
+  #message{
+    width: 70%;
+    font-size: 17px;
+  }
+  @media (max-width: 858px){
+      /*icon + contact*/
+      .con td, th{
+        font-size: 20px;
+        padding-left: 20px;
+      }
+      .con select, .con input[type=text], .con input[type=email]{
+        height: 5vh;
+        width: 95%;
+        font-size: 15px;
+      }
+      #error_message{
+        margin-right: 0px;
+        letter-spacing: 2px;
+        text-align: right;
+      }
+      #message{
+        width: 100%;
+        font-size: 17px;
+      }
+  }

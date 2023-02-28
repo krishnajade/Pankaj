@@ -1,0 +1,103 @@
+<!DOCTYPE html>        
+<html>
+  <head>
+    <title>Machine Number List</title>
+  </head>
+  <body>
+    <form>
+      <label for="machine-select">Select a machine:</label>
+      <select id="machine-select"></select>
+      <br><br>
+      <label for="year-select">Select a year:</label>
+      <select id="year-select"></select>
+    </form>
+
+    <script>
+    const machineSelect = document.getElementById('machine-select');
+    const yearSelect = document.getElementById('year-select');
+
+    // Populate select element with machine numbers and values
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.textContent = 'Please select a machine';
+    machineSelect.appendChild(defaultOption);
+
+    // Retrieve data from API
+    fetch('https://cors-anywhere.herokuapp.com/http://smt.trifrnd.in/machineuses.php')
+    .then(response => response.json())
+    .then(data => {
+        // Populate machine select element with unique machine numbers and values
+        const machineSet = new Set();
+        data.forEach(machine => {
+        if (!machineSet.has(machine.machine_id)) {
+            const option = document.createElement('option');
+            option.value = machine.machine_id;
+            option.textContent = `${machine.machine_id}`;
+            machineSelect.appendChild(option);
+            machineSet.add(machine.machine_id);
+        }
+        });
+
+        // Update year select element when machine is selected
+        machineSelect.addEventListener('change', () => {
+        const selectedMachineId = machineSelect.value;
+        if (selectedMachineId) {
+            // Retrieve unique years for the selected machine
+            const yearSet = new Set();
+            data.filter(machine => machine.machine_id === selectedMachineId)
+            .forEach(machine => {
+                const year = new Date(machine.use_date).getFullYear().toString();
+                if (!yearSet.has(year)) {
+                yearSet.add(year);
+                }
+            });
+
+            // Remove existing year options and add new ones
+            yearSelect.innerHTML = '';
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = 'Please select a year';
+            yearSelect.appendChild(defaultOption);
+            yearSet.forEach(year => {
+            const option = document.createElement('option');
+            option.value = year;
+            option.textContent = year;
+            yearSelect.appendChild(option);
+            });
+        } else {
+            // Reset year select element if no machine is selected
+            yearSelect.innerHTML = '';
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = 'Please select a machine first';
+            yearSelect.appendChild(defaultOption);
+        }
+        });
+
+        // Retrieve data for selected machine and year
+        yearSelect.addEventListener('change', () => {
+        const selectedMachineId = machineSelect.value;
+        const selectedYear = yearSelect.value;
+        if (selectedMachineId && selectedYear) {
+            // Retrieve data for the selected machine and year
+            fetch(`https://cors-anywhere.herokuapp.com/http://smt.trifrnd.in/machineuses.php?machine_id=${selectedMachineId}&year=${selectedYear}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log('Data for selected machine and year:', data);
+                // Do something with the data, e.g. display a table
+            })
+            .catch(error => {
+                console.error('Error retrieving data for selected machine and year:', error);
+            });
+
+            // Display selected year in the year select element
+            yearSelect.value = selectedYear;
+        }
+        });
+    })
+    .catch(error => {
+        console.error('Error retrieving machine number list:', error);
+    });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Year and Month</title>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+    #myChart {
+      max-width: 60%;
+      max-height: 60vh;
+    }
+    </style>
+</head>
+<body>
+	<label for="year">Select a year:</label>
+	<select id="year" onchange="updateMonthSelector()">
+		<option value="">--Please select a year--</option>
+        <option value="2023">2023-24</option>
+        <option value="2024">2024-25</option>
+        <option value="2025">2025-26</option>
+
+	</select><br><br>
+	<label for="month">Select a month:</label>
+	<select id="month" onchange="updateChart()">
+		<option value="">--Please select a month--</option>
+	</select>
+	<canvas id="myChart"></canvas>
+
+	<script>
+		const chartData = {
+			labels: [],
+			datasets: [{
+				label: "Financial year",
+				data: [],
+				backgroundColor: "rgb(79, 255, 176)",
+				borderColor:"rgb(106, 238, 176)" ,
+				borderWidth: 2
+			}]
+		};
+
+		const chartOptions = {
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true
+					}
+				}]
+			}
+		};
+
+		const chart = new Chart(document.getElementById("myChart"), {
+			type: 'bar',
+			data: chartData,
+			options: chartOptions
+		});
+
+		function updateMonthSelector() {
+    const yearSelector = document.getElementById("year");
+    const monthSelector = document.getElementById("month");
+
+    // clear existing month options
+    monthSelector.innerHTML = "";
+
+    // get selected year
+    const selectedYear = yearSelector.value;
+
+    // create new month options based on selected year
+    if (selectedYear === "") {
+        const defaultOption = document.createElement("option");
+        defaultOption.text = "--Please select a year first--";
+        monthSelector.add(defaultOption);
+    } else {
+        const monthNames = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ];
+        for (let i = 0; i < monthNames.length; i++) {
+            const option = document.createElement("option");
+            option.value = i + 1;
+            option.text = monthNames[i];
+            monthSelector.add(option);
+        }
+    }
+    updateChart();
+}
+
+
+		function updateChart() {
+			const yearSelector = document.getElementById("year");
+			const monthSelector = document.getElementById("month");
+
+			const selectedYear = yearSelector.value;
+			const selectedMonth = monthSelector.value;
+
+			if (selectedYear !== "" && selectedMonth !== "") {
+				const daysInMonth = new Date(selectedYear, selectedMonth, 0).getDate();
+
+				// update chart data with selected month's dates
+				chart.data.labels = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+
+				// update chart data with random sales data for each day of the month
+				chart.data.datasets[0].data = Array.from({ length: daysInMonth }, () => Math.floor(Math.random() * 100));
+
+				chart.update();
+			}
+		}
+	</script>
+</body>
+</html>

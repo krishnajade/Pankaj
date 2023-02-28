@@ -1,0 +1,48 @@
+
+    #myChart1, #myChart2{
+    max-width: 99%;
+    max-height: 70vh;
+    padding: 30px;
+  }
+    .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .col1,.col2{
+    float: left;
+    width:50%;
+  }
+  .sub-header{
+    background-image: linear-gradient(  rgb(230, 232, 250), rgb(287, 237, 290) );
+    padding: 10px;
+  }
+  .header{
+    padding: 20px;
+  }
+  #btn{
+    background-color: rgb(46, 46, 235);
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    width: 6%;
+    height: 6vh;
+    border-radius: 5px;
+    margin-left: 95%;
+    border: none;
+  }
+  #btn:hover{
+    border: none;
+    background-color: rgb(194, 217, 237);
+    color: black;
+  }
+  @media (max-width: 858px){
+    .col1,.col2{
+        width: 100%;
+    }
+    #btn{
+      width: 15%;
+      height: 7vh;
+      margin-left: 85%;
+    } 
+  }
